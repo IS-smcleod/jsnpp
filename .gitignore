@@ -1,5 +1,9 @@
+.classpath
+.project
+/.settings/
 builds
 docs
 dist
 nbproject
 sqlnet.log
+/target/

@@ -28,35 +28,32 @@ import java.net.UnknownHostException;
 import junit.framework.TestCase;
 
 /**
- * The SNPP Level 2 test case.
+ * The SNPP Level 1 test case.
  *
  * @author Don Seiler <don@NOSPAM.seiler.us>
  * @version $Revision$
  */
-public class Level2Test extends TestCase {
+public class Level1Test extends TestCase {
 	Message m = null;
-	String[] data = { "This", "is being", "sent on separate", "lines." };
 	
-	public Level2Test (String n) {
+	public Level1Test (String n) {
 		super(n);
 	}
 
-	protected void setUp() {
-		m = new Message("test.mysnppserver.com", 444, "don");
-		//m.setLevel(2);
-		m.setSubject("The Subject");
-		//m.setCoverageArea(2);
-		m.setAlertOverride(true);
-		m.setData(data);
+	@Override
+  protected void setUp() {
+		m = new Message("test.mysnppserver.com", 444, "don", "The system is DOWN.");
 	}
 
-	protected void tearDown() {
+	@Override
+  protected void tearDown() {
 	}
 
 	public void testSendPage() {
 		try {
 			m.send();
-			System.out.println("Level 2 page sent.");
+			System.out.println("Response was: " + m.getSENDResponse());
+			System.out.println("Level 1 page sent.");
 		} catch (UnknownHostException e) {
 			System.err.println("Unknown host: " + e.getMessage());
 		} catch (IOException e) {
@@ -66,4 +63,3 @@ public class Level2Test extends TestCase {
 		}
 	}
 }
-

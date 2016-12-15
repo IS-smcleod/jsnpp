@@ -88,7 +88,7 @@ public class Connection {
 	public String connect(int socketConnectTimeout, int socketInputTimeout)
 			throws UnknownHostException, IOException, SocketTimeoutException {
 		
-		Socket socket = new Socket();
+		socket = new Socket();
 		socket.connect(new InetSocketAddress(host, port), socketConnectTimeout);
 		socket.setSoTimeout(socketInputTimeout);
 
@@ -114,9 +114,7 @@ public class Connection {
 			try {
 				out.close();
 			} catch (Exception e) {
-				if (sce == null) {
-					sce = new SocketCloseException(e);
-				}
+				sce = new SocketCloseException(e);
 			}
 		}
 

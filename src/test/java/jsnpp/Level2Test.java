@@ -24,16 +24,48 @@
 package jsnpp;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
+import junit.framework.TestCase;
 
 /**
- * SocketCloseException thrown when closing streams and sockets
+ * The SNPP Level 2 test case.
  *
- * @author Mike Kellstrand
- * @version $Id$
+ * @author Don Seiler <don@NOSPAM.seiler.us>
+ * @version $Revision$
  */
-public class SocketCloseException extends IOException {
+public class Level2Test extends TestCase {
+	Message m = null;
+	String[] data = { "This", "is being", "sent on separate", "lines." };
+	
+	public Level2Test (String n) {
+		super(n);
+	}
 
-    public SocketCloseException(Exception e) {
-        super(e);
-    }
+	@Override
+  protected void setUp() {
+		m = new Message("test.mysnppserver.com", 444, "don");
+		//m.setLevel(2);
+		m.setSubject("The Subject");
+		//m.setCoverageArea(2);
+		m.setAlertOverride(true);
+		m.setData(data);
+	}
+
+	@Override
+  protected void tearDown() {
+	}
+
+	public void testSendPage() {
+		try {
+			m.send();
+			System.out.println("Level 2 page sent.");
+		} catch (UnknownHostException e) {
+			System.err.println("Unknown host: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("IO error: " + e.getMessage());
+		} catch (Exception e) {
+			System.err.println("Error sending message: " + e.getMessage());
+		}
+	}
 }
+

@@ -24,7 +24,6 @@
 package jsnpp;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
 
 /**
  * SNPP Message Class
@@ -669,7 +668,7 @@ public class Message {
 	}
 
 
-	private void errorOut(String badResponse) throws Exception {
+	private static void errorOut(String badResponse) throws Exception {
 		throw new Exception (badResponse);
 	}
 }
