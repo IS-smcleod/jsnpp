@@ -11,7 +11,7 @@
       <url>scpexe://aetna.mind.net/usr/local/http/public/maven/</url>
     </repository>
   </distributionManagement>
-    <build>
+  <build>
     <extensions>
       <extension>
         <groupId>org.apache.maven.wagon</groupId>
